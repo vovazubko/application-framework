@@ -1,0 +1,8 @@
+{
+  "name": "vauko/application-framework",
+  "description": "Application framework for Wordpress",
+  "version": "0.0.1",
+  "require": {
+    "php": "^7.2"
+  }
+}
