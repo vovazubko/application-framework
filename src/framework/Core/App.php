@@ -49,15 +49,17 @@ class App
     {
         try {
             $this->registry = Registry::getInstance();
-            $this->appNameSpace = $nameSpace;
-            $this->appPath = dirname(__DIR__, 3);
-            $this->appURL = plugin_dir_url(dirname(__DIR__, 2));
 
-            $loader = new Loader($this->registry);
+            $this->appFrameworkVersion = '0.0.2';
+            $this->appNameSpace        = $nameSpace;
+            $this->appPath             = dirname(__DIR__, 3);
+            $this->appURL              = plugin_dir_url(dirname(__DIR__, 2));
+
+            $loader               = new Loader($this->registry);
             $this->registry->load = $loader;
             $this->load->registerWidgets();
 
-            $option = new Option($this->registry);
+            $option                 = new Option($this->registry);
             $this->registry->option = $option;
 
             $this->load->config('Config');
@@ -114,7 +116,7 @@ class App
 
     public function showNotice()
     {
-        $class = 'notice notice-error';
+        $class   = 'notice notice-error';
         $message = __('Plugin Application Error: ' . $this->exception->getMessage(), 'text-domain');
 
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
@@ -144,8 +146,8 @@ class App
                 ])
                 && is_file($path . DIRECTORY_SEPARATOR . $shortcode)) {
                 $shortcode = basename($shortcode, '.php');
-                $class = $this->config->nameSpace . '\\Shortcode\\' . $shortcode;
-                $object = new $class($this->registry);
+                $class     = $this->config->nameSpace . '\\Shortcode\\' . $shortcode;
+                $object    = new $class($this->registry);
 
                 if (isset($object->name) && \is_string($object->name)) {
                     $shortcode = $object->name;
@@ -179,12 +181,12 @@ class App
         ];
 
         foreach ($types as $type) {
-            $field = $type['field'];
+            $field    = $type['field'];
             $function = $type['function'];
 
-            if (isset($this->config->$field) && \is_array($this->config->$field)) {
-                foreach ($this->config->$field as $action) {
-                    $controllerName = $action['callback']['controller'] . 'Controller';
+            if (isset($this->Config->$field) && \is_array($this->Config->$field)) {
+                foreach ($this->Config->$field as $action) {
+                    $controllerName = $action['callback']['controller'];
 
                     if (!isset($this->$controllerName)) {
                         $this->load->controller($action['callback']['controller']);
