@@ -101,7 +101,7 @@ class Template extends Common
      */
     public function getViewFile($extension = 'php')
     {
-        $viewPath = $this->registry->get('config')->path . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'View';
+        $viewPath = $this->appPath . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'View';
 
         $path[] = realpath($viewPath . DIRECTORY_SEPARATOR . $this->template . '_custom.' . $extension);
         $path[] = realpath($viewPath . DIRECTORY_SEPARATOR . $this->template . '.' . $extension);
